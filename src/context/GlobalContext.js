@@ -10,6 +10,10 @@ const GlobalContext = React.createContext({
 
   selectedDayInSmallCal: 0,
   setSelectedDayInSmallCal: (idx) => {},
+
+  // event modal state
+  eventModalOpen: false,
+  setEventModalOpen: () => {},
 })
 
 export default GlobalContext
