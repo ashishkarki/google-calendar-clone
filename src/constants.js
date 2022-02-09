@@ -1,0 +1,4 @@
+export const DATE_NAVIGATION_DIRECTION = {
+  PREVIOUS: 'PREVIOUS',
+  NEXT: 'NEXT',
+}

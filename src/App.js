@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useContext, useEffect } from 'react'
+import './App.css'
+import CalendarHeader from './components/CalendarHeader'
+import Month from './components/Month'
+import Sidebar from './components/Sidebar'
+import GlobalContext from './context/GlobalContext'
+import { getMonth } from './util'
 
 function App() {
+  const [monthCalendar, setMonthCalendar] = useState(getMonth())
+  const { monthIndex } = useContext(GlobalContext)
+
+  useEffect(() => {
+    setMonthCalendar(getMonth(monthIndex))
+  }, [monthIndex])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div className="h-screen flex flex-col">
+        <CalendarHeader />
+        <div className="flex flex-1">
+          <Sidebar />
+          <Month monthCalendar={monthCalendar} />
+        </div>
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
