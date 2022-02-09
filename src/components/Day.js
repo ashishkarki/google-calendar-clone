@@ -1,13 +1,17 @@
 import dayjs from 'dayjs'
 import React from 'react'
+import { DATE_FORMAT_DEFAULT } from '../constants'
 
 /**
  * @description represents a single day in the calendar
  */
 function Day({ day, rowIndex }) {
   const getCurrentDayClass = () => {
+    const currentlyPrintingDay = day.format(DATE_FORMAT_DEFAULT)
+    const today = dayjs().format(DATE_FORMAT_DEFAULT)
+
     // if the day is today, return a blue background
-    return day.format('YYYY-MM-DD') === dayjs().format('YYYY-MM-DD')
+    return currentlyPrintingDay === today
       ? 'bg-blue-600 text-white rounded-full w-7'
       : ''
   }

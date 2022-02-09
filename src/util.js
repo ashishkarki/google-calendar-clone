@@ -5,7 +5,13 @@ import dayjs from 'dayjs'
  * @param month - a number between 0 and 11
  * @returns a number between 0 to 6 representing the day of the week where 0 is Sunday
  */
-export function getMonth(month = dayjs().month()) {
+export const getMonth = (month = dayjs().month()) => {
+  // HACK: because of the code in CalendarHeader.js file's handleTodayClick()
+  // we might get decimals sometimes and so we floor such decimals to get the floored integer
+  // e.g. if we get 0.5, we get 0, if we get 1.5, we get 1, etc.
+  month = Math.floor(month)
+  // end of HACK
+
   const year = dayjs().year()
 
   const firstDayOfTheMonth = dayjs(new Date(year, month, 1)).day()
@@ -35,6 +41,3 @@ export function getMonth(month = dayjs().month()) {
 
   return daysMatrix
 }
-
-// const matrix = getMonth()
-// console.table(matrix)

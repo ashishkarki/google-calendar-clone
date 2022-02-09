@@ -10,7 +10,12 @@ const CalendarHeader = () => {
   const { globalMonthIndex, setGlobalMonthIndex } = useContext(GlobalContext)
 
   const handleTodayClick = () => {
-    setGlobalMonthIndex(dayjs().month())
+    // if this is the current month, set the global month to random value to force re-render
+    setGlobalMonthIndex(
+      globalMonthIndex === dayjs().month()
+        ? globalMonthIndex + Math.random()
+        : dayjs().month(),
+    )
   }
 
   const handleChevronClick = (direction) => {
@@ -24,7 +29,9 @@ const CalendarHeader = () => {
   }
 
   useEffect(() => {
-    console.log(`globalMonthIndex: ${globalMonthIndex}`)
+    console.log(
+      `CalendarHeader => globalMonthIndex updated to: ${globalMonthIndex}`,
+    )
   }, [globalMonthIndex])
 
   return (
