@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { DATE_FORMAT_DEFAULT } from '../constants'
 
 import GlobalContext from '../context/GlobalContext'
@@ -8,9 +8,23 @@ import GlobalContext from '../context/GlobalContext'
  * @description represents a single day in the calendar
  */
 function Day({ day, rowIndex }) {
-  const { setSelectedDayInSmallCal, setEventModalOpen } = useContext(
-    GlobalContext,
-  )
+  const {
+    setSelectedDayInSmallCal,
+    setEventModalOpen,
+    // savedEvents,
+    labelFilteredEvents,
+    setSelectedEvent,
+  } = useContext(GlobalContext)
+
+  const [dayEvents, setDayEvents] = useState([])
+
+  useEffect(() => {
+    const thisDaysEvts = labelFilteredEvents.filter((savedEvt) =>
+      dayjs(savedEvt.day).isSame(day, 'day'),
+    )
+
+    setDayEvents(thisDaysEvts)
+  }, [day, labelFilteredEvents])
 
   const getCurrentDayClass = () => {
     const currentlyPrintingDay = day.format(DATE_FORMAT_DEFAULT)
@@ -41,7 +55,22 @@ function Day({ day, rowIndex }) {
           setEventModalOpen(true)
         }}
       >
-        {''}
+        {
+          // if there are events on this day, render them
+          dayEvents.length > 0 && (
+            <div className="flex flex-col">
+              {dayEvents.map((dayEvt, index) => (
+                <div
+                  key={index}
+                  className={`bg-custom-${dayEvt.labelClass} p-1 mr-3 text-gray-700 text-sm rounded mb-1 truncate`}
+                  onClick={() => setSelectedEvent(dayEvt)}
+                >
+                  {dayEvt.title}
+                </div>
+              ))}
+            </div>
+          )
+        }
       </div>
     </div>
   )

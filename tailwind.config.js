@@ -1,5 +1,3 @@
-const colors = require('tailwindcss/colors')
-
 module.exports = {
   content: ['./src/**/*.{html,js, png, svg}'],
   theme: {
@@ -12,12 +10,12 @@ module.exports = {
       },
       colors: {
         // Configure your color palette here
-        'custom-green': '#66bb6a',
-        'custom-yellow': '#ffc107',
-        'custom-purple': '#7b1fa2',
-        'custom-red': '#f44336',
-        'custom-orange': '#ff9800',
-        'custom-blue': '#2196f3',
+        'custom-green': '#8ee693',
+        'custom-yellow': '#e8ca5d',
+        'custom-purple': '#c985e6',
+        'custom-red': '#f2594e',
+        'custom-orange': '#f2ad46',
+        'custom-blue': '#4da6f0',
       },
     },
   },
@@ -29,7 +27,7 @@ module.exports = {
     // 'bg-custom-orange',
     // 'bg-custom-blue',
     {
-      pattern: /^bg-custom-/,
+      pattern: /^(bg|text)-custom-/,
       // pattern: /bg-custom-(red|green|blue)-(200|300|500)/,
     },
   ],

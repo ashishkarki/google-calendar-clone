@@ -14,6 +14,20 @@ const GlobalContext = React.createContext({
   // event modal state
   eventModalOpen: false,
   setEventModalOpen: () => {},
+
+  // reducer
+  savedEvents: [],
+  dispatchCalendarEvts: ({ type, payload }) => {},
+
+  // selected event
+  selectedEvent: null,
+  setSelectedEvent: (evt) => {},
+
+  // selected labels
+  labels: [],
+  setLabels: (labels) => {},
+  updateLabelState: (labelToUpdate) => {},
+  labelFilteredEvents: [],
 })
 
 export default GlobalContext
