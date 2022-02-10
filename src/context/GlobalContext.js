@@ -18,6 +18,10 @@ const GlobalContext = React.createContext({
   // reducer
   savedEvents: [],
   dispatchCalendarEvts: ({ type, payload }) => {},
+
+  // selected event
+  selectedEvent: null,
+  setSelectedEvent: (evt) => {},
 })
 
 export default GlobalContext

@@ -12,7 +12,7 @@ function savedEventsReducer(state, { type, payload }) {
 
         return event
       })
-    case EVENT_ACTIONS.REMOVE_EVENT:
+    case EVENT_ACTIONS.DELETE_EVENT:
       return state.filter((event) => event.id !== payload.id)
     default:
       return state

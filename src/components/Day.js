@@ -12,6 +12,7 @@ function Day({ day, rowIndex }) {
     setSelectedDayInSmallCal,
     setEventModalOpen,
     savedEvents,
+    setSelectedEvent,
   } = useContext(GlobalContext)
 
   const [dayEvents, setDayEvents] = useState([])
@@ -58,12 +59,13 @@ function Day({ day, rowIndex }) {
           // if there are events on this day, render them
           dayEvents.length > 0 && (
             <div className="flex flex-col">
-              {dayEvents.map((evt, index) => (
+              {dayEvents.map((dayEvt, index) => (
                 <div
                   key={index}
-                  className={`bg-custom-${evt.labelClass} p-1 mr-3 text-gray-700 text-sm rounded mb-1 truncate`}
+                  className={`bg-custom-${dayEvt.labelClass} p-1 mr-3 text-gray-700 text-sm rounded mb-1 truncate`}
+                  onClick={() => setSelectedEvent(dayEvt)}
                 >
-                  {evt.title}
+                  {dayEvt.title}
                 </div>
               ))}
             </div>

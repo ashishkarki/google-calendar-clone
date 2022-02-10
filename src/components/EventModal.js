@@ -7,15 +7,20 @@ const EventModal = () => {
     setEventModalOpen,
     selectedDayInSmallCal,
     dispatchCalendarEvts,
+    selectedEvent,
   } = useContext(GlobalContext)
 
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [selectedLabel, setSelectedLabel] = useState(EVENTS_LABEL_CLASSES[0])
+  const [title, setTitle] = useState(selectedEvent.title ?? '')
+  const [description, setDescription] = useState(
+    selectedEvent.description ?? '',
+  )
+  const [selectedLabel, setSelectedLabel] = useState(
+    selectedEvent.labelClass ?? EVENTS_LABEL_CLASSES[0],
+  )
 
-  const createIconsHelper = (materialIconName) => {
+  const createIconsHelper = (materialIconName, extraClasses = '') => {
     return (
-      <span className="text-gray-400 material-icons-outlined">
+      <span className={`text-gray-400 material-icons-outlined ${extraClasses}`}>
         {materialIconName}
       </span>
     )
@@ -34,14 +39,21 @@ const EventModal = () => {
       description,
       labelClass: selectedLabel,
       day: selectedDayInSmallCal.valueOf(),
-      id: Date.now(),
+      id: selectedEvent.id ?? Date.now(),
     }
 
     // cause the event to be saved
-    dispatchCalendarEvts({
-      type: EVENT_ACTIONS.ADD_EVENT,
-      payload: newCalEvt,
-    })
+    if (selectedEvent) {
+      dispatchCalendarEvts({
+        type: EVENT_ACTIONS.UPDATE_EVENT,
+        payload: newCalEvt,
+      })
+    } else {
+      dispatchCalendarEvts({
+        type: EVENT_ACTIONS.ADD_EVENT,
+        payload: newCalEvt,
+      })
+    }
 
     // close the modal
     setEventModalOpen(false)
@@ -53,9 +65,28 @@ const EventModal = () => {
         <header className="flex items-center justify-between px-4 py-2 bg-gray-100">
           {createIconsHelper('drag_handle')}
 
-          <button onClick={() => setEventModalOpen(false)}>
-            {createIconsHelper('close')}
-          </button>
+          <div>
+            {
+              // if there is an event selected, show the delete button
+              selectedEvent && (
+                <span
+                  className="text-gray-400 cursor-pointer material-icons-outlined"
+                  onClick={() => {
+                    dispatchCalendarEvts({
+                      type: EVENT_ACTIONS.DELETE_EVENT,
+                      payload: selectedEvent,
+                    })
+                    setEventModalOpen(false)
+                  }}
+                >
+                  delete
+                </span>
+              )
+            }
+            <button onClick={() => setEventModalOpen(false)}>
+              {createIconsHelper('close')}
+            </button>
+          </div>
         </header>
 
         <div className="p-3">
