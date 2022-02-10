@@ -7,13 +7,13 @@ const MonthNavigator = ({ onChevronClick }) => {
       <button
         onClick={() => onChevronClick(DATE_NAVIGATION_DIRECTION.PREVIOUS)}
       >
-        <span className="material-icons-outlined cursor-pointer text-gray-600 mx-2">
+        <span className="mx-2 text-gray-600 cursor-pointer material-icons-outlined">
           chevron_left
         </span>
       </button>
 
       <button onClick={() => onChevronClick(DATE_NAVIGATION_DIRECTION.NEXT)}>
-        <span className="material-icons-outlined cursor-pointer text-gray-600 mx-2">
+        <span className="mx-2 text-gray-600 cursor-pointer material-icons-outlined">
           chevron_right
         </span>
       </button>

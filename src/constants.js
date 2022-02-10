@@ -3,6 +3,15 @@ export const DATE_NAVIGATION_DIRECTION = {
   NEXT: 'NEXT',
 }
 
+export const EVENTS_LABEL_CLASSES = [
+  'indigo',
+  'blue',
+  'red',
+  'gray',
+  'green',
+  'purple',
+]
+
 export const DATE_FORMAT = {
   USA: 'MM-DD-YYYY',
   UK: 'DD-MM-YYYY',

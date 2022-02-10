@@ -53,7 +53,7 @@ const SmallCalendar = () => {
   return (
     <div className="mt-9">
       <header className="flex justify-between">
-        <p className="text-gray-500 font-bold">
+        <p className="font-bold text-gray-500">
           <MonthYearDisplay monthIndex={currentMonthIndex} />
         </p>
 
@@ -66,7 +66,7 @@ const SmallCalendar = () => {
       <div className="grid grid-cols-7 grid-rows-6">
         {/* first display the top row of day initials */}
         {currentMonth[0].map((day, dayIndex) => (
-          <span key={dayIndex} className="text-sm py-1 text-center">
+          <span key={dayIndex} className="py-1 text-sm text-center">
             {day.format('dd').charAt(0)}
           </span>
         ))}

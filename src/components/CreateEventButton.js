@@ -7,7 +7,7 @@ const CreateEventButton = () => {
 
   return (
     <button
-      className="border p-2 rounded-full flex items-center shadow-md hover:shadow-2xl"
+      className="flex items-center p-2 border rounded-full shadow-md hover:shadow-2xl"
       onClick={() => setEventModalOpen(true)}
     >
       <img src={plusImg} alt="create event" className="w-7 h-7" />
