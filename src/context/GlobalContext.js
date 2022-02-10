@@ -16,6 +16,7 @@ const GlobalContext = React.createContext({
   setEventModalOpen: () => {},
 
   // reducer
+  savedEvents: [],
   dispatchCalendarEvts: ({ type, payload }) => {},
 })
 

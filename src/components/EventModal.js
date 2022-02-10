@@ -32,7 +32,7 @@ const EventModal = () => {
     const newCalEvt = {
       title,
       description,
-      label: selectedLabel,
+      labelClass: selectedLabel,
       day: selectedDayInSmallCal.valueOf(),
       id: Date.now(),
     }

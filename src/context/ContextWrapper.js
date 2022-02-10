@@ -52,6 +52,7 @@ function ContextWrapper(props) {
         eventModalOpen,
         setEventModalOpen,
 
+        savedEvents,
         dispatchCalendarEvts,
       }}
     >
