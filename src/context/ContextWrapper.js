@@ -1,6 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import GlobalContext from './GlobalContext'
 import dayjs from 'dayjs'
+import savedEventsReducer from './GlobalReducer'
+import { EVENTS_LOCAL_STORAGE_KEY } from '../constants'
+
+const initEvents = () => {
+  const eventsInStorage = localStorage.getItem(EVENTS_LOCAL_STORAGE_KEY)
+
+  const parsedEventsInStorage = eventsInStorage
+    ? JSON.parse(eventsInStorage)
+    : []
+
+  return parsedEventsInStorage
+}
 
 function ContextWrapper(props) {
   const [globalMonthIndex, setGlobalMonthIndex] = useState(dayjs().month())
@@ -8,12 +20,22 @@ function ContextWrapper(props) {
   const [selectedDayInSmallCal, setSelectedDayInSmallCal] = useState(dayjs())
   const [eventModalOpen, setEventModalOpen] = useState(false)
 
+  const [savedEvents, dispatchCalendarEvts] = useReducer(
+    savedEventsReducer,
+    [],
+    initEvents,
+  )
+
   useEffect(() => {
     if (smallCalendarMonth !== null) {
       // basically, sync the main calendar to the small calendar on the sidebar
       setGlobalMonthIndex(smallCalendarMonth)
     }
   }, [smallCalendarMonth])
+
+  useEffect(() => {
+    localStorage.setItem(EVENTS_LOCAL_STORAGE_KEY, JSON.stringify(savedEvents))
+  }, [savedEvents])
 
   return (
     <GlobalContext.Provider
@@ -29,6 +51,8 @@ function ContextWrapper(props) {
 
         eventModalOpen,
         setEventModalOpen,
+
+        dispatchCalendarEvts,
       }}
     >
       {props.children}

@@ -1,9 +1,13 @@
 import React, { useContext, useState } from 'react'
-import { EVENTS_LABEL_CLASSES } from '../constants'
+import { EVENTS_LABEL_CLASSES, EVENT_ACTIONS } from '../constants'
 import GlobalContext from '../context/GlobalContext'
 
 const EventModal = () => {
-  const { setEventModalOpen, selectedDayInSmallCal } = useContext(GlobalContext)
+  const {
+    setEventModalOpen,
+    selectedDayInSmallCal,
+    dispatchCalendarEvts,
+  } = useContext(GlobalContext)
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -15,6 +19,32 @@ const EventModal = () => {
         {materialIconName}
       </span>
     )
+  }
+
+  const handleSaveEvent = (e) => {
+    e.preventDefault()
+
+    // basic validation
+    if (!title || !description) {
+      return alert('Please fill in the title and description')
+    }
+
+    const newCalEvt = {
+      title,
+      description,
+      label: selectedLabel,
+      day: selectedDayInSmallCal.valueOf(),
+      id: Date.now(),
+    }
+
+    // cause the event to be saved
+    dispatchCalendarEvts({
+      type: EVENT_ACTIONS.ADD_EVENT,
+      payload: newCalEvt,
+    })
+
+    // close the modal
+    setEventModalOpen(false)
   }
 
   return (
@@ -67,7 +97,6 @@ const EventModal = () => {
             <div className="flex ml-4 gap-x-2">
               {EVENTS_LABEL_CLASSES.map((labelClass, index) => {
                 const bgColor = `bg-custom-${labelClass}`
-                console.log(`bgColor: ${bgColor}`)
 
                 return (
                   <span
@@ -90,6 +119,7 @@ const EventModal = () => {
         {/* footer */}
         <footer className="flex justify-end p-3 mt-5 border-t">
           <button
+            onClick={handleSaveEvent}
             type="submit"
             className="px-6 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
           >

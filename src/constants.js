@@ -19,6 +19,14 @@ export const EVENTS_LABEL_CLASSES = [
   'blue',
 ]
 
+export const EVENT_ACTIONS = {
+  ADD_EVENT: 'ADD_EVENT',
+  REMOVE_EVENT: 'REMOVE_EVENT',
+  UPDATE_EVENT: 'UPDATE_EVENT',
+}
+
+export const EVENTS_LOCAL_STORAGE_KEY = 'savedEvents'
+
 export const DATE_FORMAT = {
   USA: 'MM-DD-YYYY',
   UK: 'DD-MM-YYYY',
