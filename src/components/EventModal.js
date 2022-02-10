@@ -6,16 +6,19 @@ const EventModal = () => {
   const {
     setEventModalOpen,
     selectedDayInSmallCal,
+    setSelectedEvent,
     dispatchCalendarEvts,
     selectedEvent,
   } = useContext(GlobalContext)
 
-  const [title, setTitle] = useState(selectedEvent.title ?? '')
+  const [title, setTitle] = useState(
+    (selectedEvent && selectedEvent.title) ?? '',
+  )
   const [description, setDescription] = useState(
-    selectedEvent.description ?? '',
+    (selectedEvent && selectedEvent.description) ?? '',
   )
   const [selectedLabel, setSelectedLabel] = useState(
-    selectedEvent.labelClass ?? EVENTS_LABEL_CLASSES[0],
+    (selectedEvent && selectedEvent.labelClass) ?? EVENTS_LABEL_CLASSES[0],
   )
 
   const createIconsHelper = (materialIconName, extraClasses = '') => {
@@ -39,7 +42,7 @@ const EventModal = () => {
       description,
       labelClass: selectedLabel,
       day: selectedDayInSmallCal.valueOf(),
-      id: selectedEvent.id ?? Date.now(),
+      id: (selectedEvent && selectedEvent.id) ?? Date.now(),
     }
 
     // cause the event to be saved
@@ -54,6 +57,9 @@ const EventModal = () => {
         payload: newCalEvt,
       })
     }
+
+    // reset the selectedEvent
+    setSelectedEvent(null)
 
     // close the modal
     setEventModalOpen(false)
@@ -95,6 +101,7 @@ const EventModal = () => {
             <input
               type="text"
               name="title"
+              autoFocus
               placeholder="Add title"
               value={title}
               className="w-full p-3 pb-2 text-xl font-semibold text-gray-600 border-0 border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"

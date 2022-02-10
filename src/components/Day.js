@@ -11,20 +11,20 @@ function Day({ day, rowIndex }) {
   const {
     setSelectedDayInSmallCal,
     setEventModalOpen,
-    savedEvents,
+    // savedEvents,
+    labelFilteredEvents,
     setSelectedEvent,
   } = useContext(GlobalContext)
 
   const [dayEvents, setDayEvents] = useState([])
 
   useEffect(() => {
-    const thisDaysEvts = savedEvents.filter((savedEvt) =>
+    const thisDaysEvts = labelFilteredEvents.filter((savedEvt) =>
       dayjs(savedEvt.day).isSame(day, 'day'),
     )
-    // console.log(`Day ${day} has ${JSON.stringify(thisDaysEvts)} events`)
 
     setDayEvents(thisDaysEvts)
-  }, [day, savedEvents])
+  }, [day, labelFilteredEvents])
 
   const getCurrentDayClass = () => {
     const currentlyPrintingDay = day.format(DATE_FORMAT_DEFAULT)

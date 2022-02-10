@@ -27,7 +27,7 @@ module.exports = {
     // 'bg-custom-orange',
     // 'bg-custom-blue',
     {
-      pattern: /^bg-custom-/,
+      pattern: /^(bg|text)-custom-/,
       // pattern: /bg-custom-(red|green|blue)-(200|300|500)/,
     },
   ],

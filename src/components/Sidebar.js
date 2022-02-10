@@ -1,4 +1,5 @@
 import CreateEventButton from './CreateEventButton'
+import LabelDisplayer from './LabelDisplayer'
 import SmallCalendar from './SmallCalendar'
 
 const Sidebar = () => {
@@ -7,6 +8,8 @@ const Sidebar = () => {
       <CreateEventButton />
 
       <SmallCalendar />
+
+      <LabelDisplayer />
     </aside>
   )
 }
