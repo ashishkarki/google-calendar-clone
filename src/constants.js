@@ -4,12 +4,19 @@ export const DATE_NAVIGATION_DIRECTION = {
 }
 
 export const EVENTS_LABEL_CLASSES = [
-  'indigo',
-  'blue',
-  'red',
-  'gray',
+  // 'indigo',
+  // 'blue',
+  // 'red',
+  // 'gray',
+  // 'green',
+  // 'purple',
+
   'green',
+  'yellow',
   'purple',
+  'red',
+  'orange',
+  'blue',
 ]
 
 export const DATE_FORMAT = {

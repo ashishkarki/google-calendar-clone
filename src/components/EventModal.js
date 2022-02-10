@@ -66,7 +66,8 @@ const EventModal = () => {
             {createIconsHelper('bookmark_border')}
             <div className="flex ml-4 gap-x-2">
               {EVENTS_LABEL_CLASSES.map((labelClass, index) => {
-                const bgColor = `bg-${labelClass}-500`
+                const bgColor = `bg-custom-${labelClass}`
+                console.log(`bgColor: ${bgColor}`)
 
                 return (
                   <span
