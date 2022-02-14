@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/google-calendar-clone/static/css/main.84319f66.css",
+    "main.js": "/google-calendar-clone/static/js/main.17cfeced.js",
+    "static/js/787.65a28d25.chunk.js": "/google-calendar-clone/static/js/787.65a28d25.chunk.js",
+    "index.html": "/google-calendar-clone/index.html",
+    "static/media/plus.svg": "/google-calendar-clone/static/media/plus.0f025785a6cb18c9d3b9c58bb98c6965.svg",
+    "main.84319f66.css.map": "/google-calendar-clone/static/css/main.84319f66.css.map",
+    "main.17cfeced.js.map": "/google-calendar-clone/static/js/main.17cfeced.js.map",
+    "787.65a28d25.chunk.js.map": "/google-calendar-clone/static/js/787.65a28d25.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84319f66.css",
+    "static/js/main.17cfeced.js"
+  ]
+}
